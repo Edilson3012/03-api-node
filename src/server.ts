@@ -4,9 +4,15 @@ import { knex } from "./database";
 const app = fastify();
 
 app.get('/hello', async () => {
-    const tables = await knex('sqlite_schema').select('*');
-    return tables;
-    return 'salveee';
+    // const transaction = await knex('transactions').insert({
+    //     id: crypto.randomUUID(),
+    //     title: 'Transacao de teste',
+    //     amount: 1000,
+    // }).returning('*');
+
+    const transaction = await knex('transactions').select('*');
+
+    return transaction;
 })
 
 app.listen({
